@@ -1,4 +1,5 @@
+import Home from './home'
 import DisputeForm from './disputeForm'
 import DisputesList from './disputesList'
 
-export {DisputeForm, DisputesList}
+export {Home, DisputeForm, DisputesList}

@@ -17,7 +17,7 @@ const HomeButton : FC<Props> = ({icon, title, navigation, nav}:Props) => {
         >
             <Icon
                 style={styles.icon}
-                fill='#8F9BB3'
+                fill='#fff'
                 name={icon}
             />
             <Text style={styles.title}>
@@ -39,16 +39,18 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderColor: '#aaaaaa',
         alignItems: 'center',
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#70cce5',
         borderRadius: 20,
         padding: 20
     },
     icon: {
         width: 50,
-        height: 50,
+        height: 50
     },
     title: {
         flex: 1,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: 22
     }
 })

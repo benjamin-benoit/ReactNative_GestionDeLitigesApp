@@ -10,13 +10,6 @@ const App : FC = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            {/* <Button style={styles.button} onPress={() => {navigation.navigate('disputesList')}}>
-                <Icon
-                    style={styles.icon}
-                    fill='#fff'
-                    name='edit-2-outline'
-                />
-            </Button> */}
             <HomeButton icon="edit-2-outline" title="Liste des litiges" navigation={navigation} nav="disputesList"></HomeButton>
         </View>
     )

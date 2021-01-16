@@ -1,6 +1,6 @@
 import React, { FC }  from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button, Icon, List, ListItem } from '@ui-kitten/components';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Icon, List } from '@ui-kitten/components';
 import DisputeItem from '../components/disputeItem';
 
 const App : FC = ({navigation}) => {
@@ -18,13 +18,13 @@ const App : FC = ({navigation}) => {
                 data={jsonData.disputes}
                 renderItem={renderItem}
             />
-            <Button style={styles.button} onPress={() => {navigation.navigate('disputeForm')}}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('disputeForm')}}>
                 <Icon
                     style={styles.icon}
                     fill='#fff'
                     name='plus-outline'
                 />
-            </Button>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -44,14 +44,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     button: {
-        height: 75,
-        width: 75,
-        margin: 30,
+        padding: 20,
         backgroundColor: '#70cce5',
         borderWidth: 0,
         borderRadius: 50,                                    
         position: 'absolute',                                          
-        bottom: 10,                                                    
-        right: 10, 
+        bottom: 40,                                                    
+        right: 40, 
     }
 })

@@ -1,11 +1,23 @@
 import React, { FC }  from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Button, Icon } from '@ui-kitten/components';
+import { Button, Icon, List, ListItem } from '@ui-kitten/components';
+import DisputeItem from '../components/disputeItem';
 
 const App : FC = ({navigation}) => {
+
+    const jsonData = require('../datas/disputes.json');
+
+    const renderItem = ({ item, index }) => (
+        <DisputeItem name={item.name} description={item.description}></DisputeItem>
+    );
+
     return (
         <View style={styles.container}>
-            <Text>Disputes List View</Text>
+            <List
+                style={styles.list}
+                data={jsonData.disputes}
+                renderItem={renderItem}
+            />
             <Button style={styles.button} onPress={() => {navigation.navigate('disputeForm')}}>
                 <Icon
                     style={styles.icon}
@@ -26,7 +38,9 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        backgroundColor: '#fff'
+    },
+    list: {
         backgroundColor: '#fff'
     },
     button: {
@@ -35,6 +49,9 @@ const styles = StyleSheet.create({
         margin: 30,
         backgroundColor: '#70cce5',
         borderWidth: 0,
-        borderRadius: 50,
+        borderRadius: 50,                                    
+        position: 'absolute',                                          
+        bottom: 10,                                                    
+        right: 10, 
     }
 })

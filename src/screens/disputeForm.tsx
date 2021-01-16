@@ -6,6 +6,7 @@ import HeaderForm from '../components/headerForm';
 import { Picker } from '@react-native-community/picker';
 import * as DocumentPicker from 'expo-document-picker';
 import * as firebase from 'firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -19,8 +20,23 @@ const firebaseConfig = {
     appId: "1:49747016637:web:69d9cd5774bc3c1faaf0d4",
     measurementId: "G-5E9JLL628E"
 };
+
+if (!firebase.apps.length) {
+   firebase.initializeApp({});
+}else {
+   firebase.app();
+}
   
 const App : FC = () => {
+
+    const uploadFile = async(uri: string, name: string) => {
+        console.log(uri);
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        var ref = firebase.storage().ref("documents/").child(uuidv4());
+        console.log(ref);
+        return ref.put(blob);
+    }
 
     const [selectedProvider, setSelectedProvider] = useState("metro");
     const [selectedOrder, setSelectedOrder] = useState("commande 1");
@@ -32,7 +48,7 @@ const App : FC = () => {
     const [date, setDate] = React.useState(new Date());
     const [data, setData] = useState({
         name: ""
-    });
+    })
 
     return (
         <View style={styles.container}>
@@ -125,7 +141,7 @@ const App : FC = () => {
                             </Button>
                             <Button style={styles.formButton} status='basic' onPress={() => DocumentPicker.getDocumentAsync({}).then(async(response) => {
                                 try {
-                                    console.log(response)
+                                    uploadFile(response.uri, response.name)
                                 } catch (e) {
                                     console.log(e)
                                 }

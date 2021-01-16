@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
         flex: 0,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'stretch'
     },
     body: {
         backgroundColor: '#70cce5'

@@ -1,8 +1,6 @@
 import React, { FC, useState }  from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { Input } from '../components';
-import HeaderForm from '../components/headerForm';
+import { View, StyleSheet } from 'react-native';
+import { HomeButton } from '../components';
 import { Button, Icon } from '@ui-kitten/components';
   
 const App : FC = ({navigation}) => {
@@ -12,13 +10,14 @@ const App : FC = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Button style={styles.button} onPress={() => {navigation.navigate('disputesList')}}>
+            {/* <Button style={styles.button} onPress={() => {navigation.navigate('disputesList')}}>
                 <Icon
                     style={styles.icon}
                     fill='#fff'
                     name='edit-2-outline'
                 />
-            </Button>
+            </Button> */}
+            <HomeButton icon="edit-2-outline" title="Liste des litiges" navigation={navigation} nav="disputesList"></HomeButton>
         </View>
     )
 }

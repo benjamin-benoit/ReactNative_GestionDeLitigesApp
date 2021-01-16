@@ -2,12 +2,14 @@ import React, { FC }  from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon, List } from '@ui-kitten/components';
 import DisputeItem from '../components/disputeItem';
+import { useNavigation } from '@react-navigation/native';
+import { disputes } from '../datas/disputes';
 
-const App : FC = ({navigation}) => {
+const App : FC = () => {
 
-    const jsonData = require('../datas/disputes.json');
+    const navigation = useNavigation();
 
-    const renderItem = ({ item, index }) => (
+    const renderItem = ({item, index}: any) => (
         <DisputeItem name={item.name} description={item.description}></DisputeItem>
     );
 
@@ -15,7 +17,7 @@ const App : FC = ({navigation}) => {
         <View style={styles.container}>
             <List
                 style={styles.list}
-                data={jsonData.disputes}
+                data={disputes}
                 renderItem={renderItem}
             />
             <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('disputeForm')}}>

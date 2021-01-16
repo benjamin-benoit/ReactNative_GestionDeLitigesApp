@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Dimensions, View, StyleSheet, Text } from 'react-native';
 import { ProgressBar, Colors } from 'react-native-paper';
+import { Button } from '@ui-kitten/components';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -8,15 +9,29 @@ interface Props {
     title: string;
     subtitle: string;
     progress: number;
+    stepForm: Function;
+    stepFormBack?: Function;
 }
 
-const HeaderForm : FC<Props> = ({title, subtitle, progress}:Props) => {
+const HeaderForm : FC<Props> = ({title, subtitle, progress, stepForm, stepFormBack}:Props) => {
     return (
-        <View style={styles.container}>
-            <ProgressBar style={styles.progress} progress={progress} color={Colors.white} />
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-        </View>
+        <>
+            <View style={styles.container}>
+                <ProgressBar style={styles.progress} progress={progress} color={Colors.white} />
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.subtitle}>{subtitle}</Text>
+            </View>
+            <View>
+                {stepFormBack &&
+                    <Button status='basic' onPress={() => stepFormBack()}>
+                        Précédent
+                    </Button>
+                }
+                <Button status='basic' onPress={() => stepForm()}>
+                    Suivant
+                </Button>
+            </View>
+        </>
     )
 }
 

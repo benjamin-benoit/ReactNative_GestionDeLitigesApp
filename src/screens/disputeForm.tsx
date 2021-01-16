@@ -6,7 +6,9 @@ import HeaderForm from '../components/headerForm';
 import { Picker } from '@react-native-community/picker';
 import * as DocumentPicker from 'expo-document-picker';
 import * as firebase from 'firebase';
-import { v4 as uuidv4 } from 'uuid';
+import { v5 as uuidv5 } from 'uuid';
+import { Dispute } from '../dto/dispute';
+import { disputes } from '../datas/disputes';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -22,7 +24,7 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
-   firebase.initializeApp({});
+   firebase.initializeApp(firebaseConfig);
 }else {
    firebase.app();
 }
@@ -33,46 +35,45 @@ const App : FC = () => {
         console.log(uri);
         const response = await fetch(uri);
         const blob = await response.blob();
-        var ref = firebase.storage().ref("documents/").child(uuidv4());
+        var ref = firebase.storage().ref("documents/").child(uuidv5.URL);
         console.log(ref);
         return ref.put(blob);
     }
 
     const [selectedProvider, setSelectedProvider] = useState("metro");
     const [selectedOrder, setSelectedOrder] = useState("commande 1");
-    const [step1, setStep1] = useState(true);
-    const [step2, setStep2] = useState(false);
-    const [step3, setStep3] = useState(false);
-    const [step4, setStep4] = useState(false);
+    const [step1, setStep1] = useState<boolean>(true);
+    const [step2, setStep2] = useState<boolean>(false);
+    const [step3, setStep3] = useState<boolean>(false);
+    const [step4, setStep4] = useState<boolean>(false);
     const [document, setDocument] = useState();
-    const [date, setDate] = React.useState(new Date());
-    const [data, setData] = useState({
-        name: ""
-    })
+    const [date, setDate] = useState(new Date());
+    const [data, setData] = useState<Partial <Dispute>>();
 
     return (
         <View style={styles.container}>
             {
                 step1 === true && (
                     <View style={styles.body}>
-                        <HeaderForm title="Première étape:" subtitle="Indiquez le nom de votre litige, sa description et la date." progress='0'/>
-                        <View style={styles.formNav}>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(false)
-                                setStep2(true)
-                                setStep3(false)
-                                setStep4(false)}}>
-                                Suivant
-                            </Button>
-                        </View>
+                        <HeaderForm
+                        title="Première étape:"
+                        subtitle="Indiquez le nom de votre litige, sa description et la date."
+                        progress={0}
+                        stepForm={() => {
+                                    setStep1(false)
+                                    setStep2(true)
+                                    setStep3(false)
+                                    setStep4(false)
+                                    console.log(data)}
+                                }
+                        />
                         <View style={styles.form}>
                             <Text style={styles.formText}>Renseignez le nom du litige:</Text>
-                            <Input placeholder="nom"></Input>
+                            <Input placeholder="nom" value={data?.name} onChangeText={(text: string) => setData({name: text})}></Input>
                             <Text style={styles.formText}>Renseignez une description:</Text>
-                            <Input placeholder="description"></Input>
+                            <Input placeholder="description" value={data?.description} onChangeText={(text: string) => setData({description: text})}></Input>
                             <Text style={styles.formText}>Sélectionnez la date:</Text>
                             <Datepicker
-                                style={styles.datePicker}
                                 date={date}
                                 onSelect={nextDate => setDate(nextDate)}
                             />
@@ -83,23 +84,23 @@ const App : FC = () => {
             {
                 step2 === true && (
                     <View style={styles.body}>
-                        <HeaderForm title="Seconde étape:" subtitle="Sélectionnez votre fournisseur." progress='0.3'/>
-                        <View style={styles.formNav}>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(true)
-                                setStep2(false)
-                                setStep3(false)
-                                setStep4(false)}}>
-                                Précédent
-                            </Button>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(false)
-                                setStep2(false)
-                                setStep3(true)
-                                setStep4(false)}}>
-                                Suivant
-                            </Button>
-                        </View>
+                        <HeaderForm
+                        title="Seconde étape:"
+                        subtitle="Sélectionnez votre fournisseur."
+                        progress={0.3}
+                        stepForm={() => {
+                                    setStep1(false)
+                                    setStep2(false)
+                                    setStep3(true)
+                                    setStep4(false)}
+                                }
+                        stepFormBack={() => {
+                                    setStep1(true)
+                                    setStep2(false)
+                                    setStep3(false)
+                                    setStep4(false)}
+                                }
+                        />
                         <View style={styles.form}>
                             <Picker
                                 selectedValue={selectedProvider}
@@ -118,23 +119,23 @@ const App : FC = () => {
             {
                 step3 === true && (
                     <View style={styles.body}>
-                        <HeaderForm title="Troisième étape:" subtitle="Ajoutez une photo et le bon de livraison." progress='0.6'/>
-                        <View style={styles.formNav}>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(false)
-                                setStep2(true)
-                                setStep3(false)
-                                setStep4(false)}}>
-                                Précédent
-                            </Button>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(false)
-                                setStep2(false)
-                                setStep3(false)
-                                setStep4(true)}}>
-                                Suivant
-                            </Button>
-                        </View>
+                        <HeaderForm
+                        title="Troisième étape:"
+                        subtitle="Ajoutez une photo et le bon de livraison."
+                        progress={0.6}
+                        stepForm={() => {
+                                    setStep1(false)
+                                    setStep2(false)
+                                    setStep3(false)
+                                    setStep4(true)}
+                                }
+                        stepFormBack={() => {
+                                    setStep1(false)
+                                    setStep2(true)
+                                    setStep3(false)
+                                    setStep4(false)}
+                                }
+                        />
                         <View style={styles.form}>
                             <Button style={styles.formButton} status='basic'>
                                 Sélectionner une photo
@@ -155,19 +156,17 @@ const App : FC = () => {
             {
                 step4 === true && (
                     <View style={styles.body}>
-                        <HeaderForm title="Quatrième étape:" subtitle="Sélectionnez la commande concernée." progress='1'/>
-                        <View style={styles.formNav}>
-                            <Button style={styles.button} status='basic' onPress={() => {
-                                setStep1(false)
-                                setStep2(false)
-                                setStep3(true)
-                                setStep4(false)}}>
-                                Précédent
-                            </Button>
-                            <Button style={styles.button} status='basic'>
-                                Terminer
-                            </Button>
-                        </View>
+                        <HeaderForm title="Quatrième étape:" subtitle="Sélectionnez la commande concernée." progress={1}
+                        stepFormBack={() => {
+                                    setStep1(false)
+                                    setStep2(false)
+                                    setStep3(true)
+                                    setStep4(false)}
+                                }
+                        stepForm={() => {
+                        }
+                        }
+                        />
                             <Picker
                                 selectedValue={selectedOrder}
                                 style={{ height: 20}}
@@ -219,5 +218,8 @@ const styles = StyleSheet.create({
     },
     formButton: {
         margin: 10
+    },
+    formText: {
+        color: '#aaaaaa'
     }
 })

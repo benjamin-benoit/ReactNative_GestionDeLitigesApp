@@ -5,12 +5,13 @@ const { height, width } = Dimensions.get('screen');
 
 interface Props {
     placeholder: string;
+    onChangeText: Function;
 }
 
-const Input : FC<Props> = (props) => {
+const Input : FC<Props> = ({placeholder, onChangeText}: Props) => {
     return (
         <View style={styles.container}>
-            <TextInput style={styles.input} placeholder={props.placeholder}></TextInput>
+            <TextInput style={styles.input} placeholder={placeholder} onChangeText={() => onChangeText()}></TextInput>
         </View>
     )
 }

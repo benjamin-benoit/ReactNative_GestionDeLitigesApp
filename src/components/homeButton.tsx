@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Dimensions, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from '@ui-kitten/components';
+import { useNavigation } from '@react-navigation/native';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -10,7 +11,10 @@ interface Props {
     nav: string;
 }
 
-const HomeButton : FC<Props> = ({icon, title, navigation, nav}:Props) => {
+const HomeButton : FC<Props> = ({icon, title, nav}:Props) => {
+
+    const navigation = useNavigation();
+
     return (
         <TouchableOpacity style={styles.container}
             onPress={() => {navigation.navigate(nav)}}

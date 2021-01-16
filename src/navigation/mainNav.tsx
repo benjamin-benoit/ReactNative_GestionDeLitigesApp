@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 import { DisputeForm, DisputesList, Home } from '../screens';
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native';
 
 const { Navigator, Screen } = createStackNavigator();
 

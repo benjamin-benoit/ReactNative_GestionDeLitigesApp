@@ -3,14 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import { HomeButton } from '../components';
 import { Button, Icon } from '@ui-kitten/components';
   
-const App : FC = ({navigation}) => {
+const App : FC = () => {
 
     const [selectedValue, setSelectedValue] = useState("java");
     const [counter, setCounter] = React.useState(0);
 
     return (
         <View style={styles.container}>
-            <HomeButton icon="edit-2-outline" title="Liste des litiges" navigation={navigation} nav="disputesList"></HomeButton>
+            <HomeButton icon="edit-2-outline" title="Litiges" nav="disputesList"></HomeButton>
+            <HomeButton icon="briefcase-outline" title="Inventaire" nav="Accueil"></HomeButton>
+            <HomeButton icon="shopping-cart-outline" title="Commandes" nav="Accueil"></HomeButton>
         </View>
     )
 }

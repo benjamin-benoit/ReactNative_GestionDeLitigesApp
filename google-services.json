@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "49747016637",
+    "project_id": "gestiondelitiges-95495",
+    "storage_bucket": "gestiondelitiges-95495.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49747016637:android:c2d145b894c45e14aaf0d4",
+        "android_client_info": {
+          "package_name": "com.benjaminbenoit.appLitiges"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49747016637-98ev0us7g23unf1knht08geqopj3dmtt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgXfYK4MkyXNN4xSodJUWG0KCBIW8jtWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49747016637-98ev0us7g23unf1knht08geqopj3dmtt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

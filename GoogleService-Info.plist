@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>49747016637-vgjaks9tj8caroqq88stncil40cue5c2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.49747016637-vgjaks9tj8caroqq88stncil40cue5c2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAvG7krJrh-o0Kfkzx7-okcZW9svd4mY9A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>49747016637</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.benjaminbenoit.appLitiges</string>
+	<key>PROJECT_ID</key>
+	<string>gestiondelitiges-95495</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gestiondelitiges-95495.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:49747016637:ios:5498690be4f9d4b7aaf0d4</string>
+</dict>
+</plist>
